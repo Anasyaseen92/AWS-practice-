@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: aws-practice-app
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    restart: unless-stopped
+    volumes:
+      - ./server:/app/server
+      - ./client:/app/client
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
